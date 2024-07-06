@@ -201,11 +201,25 @@
                 <div class="col md-6" v-if="etapa == 3">
                     <!-- pedido confirmado -->
                     <div class="row mt-2">
-
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    PEDIDO CONFIRMADO
+                                </div>
+                                <div class="card-body">
+                                    <p>Agora é só aguardar 10 minutinhos!</p>
+                                    <p>Vamos chamar você em breve.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- repetir pedido -->
                     <div class="row mt-2">
+                        <div class="col d-flex justify-content-between">
+                            <button type="button" class="btn btn-primary" @click="etapa = 1">Repetir Pedido</button>
 
+                            <button type="button" class="btn btn-success" @click="novoPedido()">Novo Pedido</button>
+                        </div>
                     </div>
                 </div>
 
@@ -226,6 +240,7 @@
                 etapa: 1,
                 inputNome:'',
                 inputEndereco:'',
+                novoPedidoAssincrono: null
             },
 
             computed: {  // propriedades computadas // reativos 
@@ -289,10 +304,24 @@
                 confirmarPedido () {
                     if(this.inputNome && this.inputEndereco) {
                         this.etapa = 3
+
+                        this.novoPedidoAssincrono = setTimeout (() => this.novoPedido(), 5000)
+
+
                     } else {
                         alert ('Você precisa informar o seu nome e endereço')
                     } 
 
+                },
+                novoPedido () {
+                    this.etapa = 1
+
+                    this.inputTipoPao =''
+                    this.inputSalada = []
+                    this.inputMolhos = []
+                    this.inputHamburguer = ''
+                    this.inputNome = ''
+                    this.inputEndereco = ''
                 }
             },
 
