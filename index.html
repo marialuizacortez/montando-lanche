@@ -89,18 +89,75 @@
 
                                 <div class="card-body">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="alface" v-model="inputSalada"> 
+                                        <input class="form-check-input" type="checkbox" value="alface"
+                                            v-model="inputSalada">
                                         <label class="form-check-label">Alface</label>
                                     </div>
                                 </div>
-                            
-                            
+
+
                             </div>
                         </div>
-                    </div>  <!-- FIM salada  -->
+                    </div> <!-- FIM salada  -->
+
+                    <!-- MOLHOS -->
+                    <div class="row mt-6">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header"> Molhos </div>
+                                <div class="card-body">
+
+                                    <div class="form-check-inline">
+                                        <input type="checkbox" value="ketchup" v-model="inputMolhos">
+                                        <label class="form-check-label">Ketchup</label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <input type="checkbox" value="mostarda" v-model="inputMolhos">
+                                        <label class="form-check-label">Mostarda</label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <input type="checkbox" value="maionese" v-model="inputMolhos">
+                                        <label class="form-check-label">Maionese</label>
+                                    </div>
 
 
-                </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> <!-- FIM molhos -->
+
+                    <!-- tipos hamburguer -->
+                    <div class="row mt-6">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header"> Tipo de hambúrguer </div>
+                                <div class="card-body">
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" value="bovino" v-model="inputHamburguer">
+                                        <label>Bovino</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" value="frango" v-model="inputHamburguer">
+                                        <label>Frango</Frame></label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" value="vegetal" v-model="inputHamburguer">
+                                        <label>Vegetal </label>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- FIM col md -->
             </div>
         </div>
 
@@ -112,6 +169,8 @@
                 data: {  //atributos // propriedades 
                     inputTipoPao: '',
                     inputSalada: [],
+                    inputMolhos: [],
+                    inputHamburguer: '',
                 },
 
                 computed: {  // propriedades computadas // reativos 
@@ -122,23 +181,45 @@
                             case 'australiano':
                                 return ['imagens/pao_australiano_superior.png', 'imagens/pao_australiano_inferior.png']
                             default:
-                                return [ 'imagens/padrao/pao_superior.png', 'imagens/padrao/pao_inferior.png']
-      
+                                return ['imagens/padrao/pao_superior.png', 'imagens/padrao/pao_inferior.png']
                         }
                     },
                     alface() {
-                        if(this.inputSalada.includes('alface')) {
+                        if (this.inputSalada.includes('alface')) {
                             return 'imagens/alface.png'
                         }
-
                         return 'imagens/padrao/alface.png'
-                    }
-                    
+                    },
+                    ketchup() {
+                        if (this.inputMolhos.includes('ketchup')) {
+                            return 'imagens/ketchup.png'
+                        }
+                        return 'imagens/padrao/molho.png'
+                    },
+                    mostarda() {
+                        if (this.inputMolhos.includes('mostarda')) {
+                            return 'imagens/mostarda.png'
+                        }
+                        return 'imagens/padrao/molho.png'
+                    },
+                    maionese() {
+                        if (this.inputMolhos.includes('maionese')) {
+                            return 'imagens/maionese.png'
+                        }
+                        return 'imagens/padrao/molho.png'
 
-
-                },
-
-
+                    },
+                    hamburguer () {
+                        switch(this.inputHamburguer) {
+                            case 'bovino' :
+                                return 'imagens/bovino.png'
+                            case 'frango': 
+                                return 'imagens/frango.png'
+                            case 'vegetal' : 
+                                return 'imagens/soja.png'     
+                        }
+                    },
+                }
 
 
             })
